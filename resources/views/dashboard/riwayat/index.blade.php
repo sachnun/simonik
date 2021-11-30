@@ -25,11 +25,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- riwayats sa riwayat --}}
+                        {{-- riwayats as riwayat --}}
                         @foreach ($riwayats as $riwayat)
                             <tr>
                                 <td>{{ $riwayat->user_id }}</td>
-                                <td>{{ $riwayat->user->nama }}</td>
+                                <td>{{ $riwayat->user->nama_depan }} {{ $riwayat->user->nama_belakang }}</td>
                                 <td>{{ $riwayat->aktivitas }}</td>
                                 <td>{{ $riwayat->waktu }}</td>
                                 <td>{{ $riwayat->alamat_ip }}</td>
@@ -39,6 +39,7 @@
                 </table>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12 col-md-6">
                 {{-- paginate --}}

@@ -413,7 +413,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1">Rp. 0</h1>
+                            <h1 class="mt-1">
+                                {{ 'Rp ' . number_format($nominal_diterbitkan, 0, ',', '.') }}</h1>
                         </div>
                     </div>
                 </div>
@@ -438,7 +439,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h1 class="mt-1">Rp. 0</h1>
+                            <h1 class="mt-1">{{ 'Rp ' . number_format($nominal_disetujui, 0, ',', '.') }}</h1>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@
                             <th>Nomor SP2</th>
                             <th>Tanggal Jatuh Tempo</th>
                             <th class="text-center">Progres</th>
-                            <th>Status</th>
+                            <th class="text-center">Status</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -37,11 +37,17 @@
                                 {{-- loop index with paginate --}}
                                 <td>{{ $pemeriksaans->firstItem() + $loop->index }}</td>
                                 <td>{{ $pemeriksaan->npwp }}</td>
-                                <td>{{ $pemeriksaan->nama_wp }}</td>
+                                <td>
+                                    <a href="{{ route('pemeriksaan.show', $pemeriksaan->id) }}" class="text-reset">
+                                        {{ $pemeriksaan->nama_wp }}
+                                    </a>
+                                </td>
                                 <td>{{ $pemeriksaan->nomor_sp2 }}</td>
                                 <td>{{ $pemeriksaan->tanggal_jatuh_tempo_sp2 }}</td>
                                 <td class="text-center">{{ $pemeriksaan->percent() }}%</td>
-                                <td>-</td>
+                                <td class="text-center">
+                                    @include('dashboard.pemeriksaan.status', ['status_menu'=>$pemeriksaan->status_menu()])
+                                </td>
                                 <td class="table-action">
                                     <div class="dropdown position-relative">
                                         <a href="#" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"

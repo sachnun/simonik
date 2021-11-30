@@ -25,13 +25,16 @@
 
                             <div class="sidebar-user mb-4">
                                 <div class="d-flex justify-content-center">
-                                    <div class="flex-grow-1">
+                                    <div class="flex-grow-1 text-truncate">
                                         <a class="sidebar-user-title dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                             aria-expanded="false">
-                                            {{ auth()->user()->nama }}
+                                            {{ auth()->user()->nama_depan }}
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-start">
-                                            <a class="dropdown-item" href="#">Detail Akun</a>
+                                            <a class="dropdown-item"
+                                                href="{{ route('daftar-user.show', auth()->user()->id) }}">
+                                                Detail Akun
+                                            </a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{{ route('logout') }}">Log out</a>
                                         </div>
@@ -123,34 +126,37 @@
                                     </a>
                                 </li>
 
-                                <li class="sidebar-item {{ Request::is('dashboard/daftar-user*') ? 'active' : '' }}">
-                                    <a class="sidebar-link" href="{{ route('daftar-user.index') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-users align-middle">
-                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="9" cy="7" r="4"></circle>
-                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                        </svg>
-                                        <span class="align-middle">Daftar User</span>
-                                    </a>
-                                </li>
+                                @if (auth()->user()->role == 'admin')
+                                    <li
+                                        class="sidebar-item {{ Request::is('dashboard/daftar-user*') ? 'active' : '' }}">
+                                        <a class="sidebar-link" href="{{ route('daftar-user.index') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-users align-middle">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="9" cy="7" r="4"></circle>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                            </svg>
+                                            <span class="align-middle">Daftar User</span>
+                                        </a>
+                                    </li>
 
-                                <li
-                                    class="sidebar-item {{ Request::is('dashboard/riwayat-login*') ? 'active' : '' }}">
-                                    <a class="sidebar-link" href="{{ route('riwayat-login') }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-user align-middle">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                        </svg>
-                                        <span class="align-middle">Riwayat Login</span>
-                                    </a>
-                                </li>
+                                    <li
+                                        class="sidebar-item {{ Request::is('dashboard/riwayat-login*') ? 'active' : '' }}">
+                                        <a class="sidebar-link" href="{{ route('riwayat-login') }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-user align-middle">
+                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                <circle cx="12" cy="7" r="4"></circle>
+                                            </svg>
+                                            <span class="align-middle">Riwayat Login</span>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
 
                         </div>
