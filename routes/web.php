@@ -43,6 +43,6 @@ Route::prefix('dashboard')->group(function () {
         Route::resource('/daftar-user', 'App\Http\Controllers\DaftarUserController');
         Route::resource('/surat-ketetapan-pajak', 'App\Http\Controllers\SuratKetetapanPajakController');
 
-        Route::get('riwayat-login', [RiwayatLoginController::class, 'index'])->name('riwayat-login');
+        Route::get('riwayat-login', [RiwayatLoginController::class, 'index'])->middleware('is_admin')->name('riwayat-login');
     });
 });
