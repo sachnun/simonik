@@ -35,20 +35,6 @@ class PemeriksaanController extends Controller
         // simpan data validated ke database
         $pemeriksaan = Pemeriksaan::create($validated);
 
-        // create progress data dari progress_pemeriksaan jika masih kosong
-        foreach (ProgressPemeriksaan::all() as $key) {
-            $progress = Progress::where('progress_pemeriksaan_id', $key['id'])
-                ->where('pemeriksaan_id', $pemeriksaan->id)
-                ->first();
-
-            if (!$progress) {
-                Progress::create([
-                    'progress_pemeriksaan_id' => $key['id'],
-                    'pemeriksaan_id' => $pemeriksaan->id
-                ]);
-            }
-        }
-
         // switch kriteria_pemeriksaan
         switch ($pemeriksaan->kriteria_pemeriksaan) {
             case 'rutin':
@@ -88,7 +74,7 @@ class PemeriksaanController extends Controller
             case 'khusus':
                 $route = 'pemeriksaan.khusus';
                 break;
-            case 'tujuan-lain':
+            case 'tujuan_lain':
                 $route = 'pemeriksaan.tujuan-lain';
                 break;
             default:
