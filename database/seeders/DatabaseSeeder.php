@@ -19,11 +19,16 @@ class DatabaseSeeder extends Seeder
 
         // User 1
         User::create([
-            'nama' => 'Tester Internal',
+            'nama_depan' => 'Tester',
+            'nama_belakang' => 'Internal',
             'nip_sikka' => 'test',
             'role' => 'admin',
             'password' => bcrypt('test'),
         ]);
+
+        // factory surat ketetapan pajak
+        \App\Models\SuratKetetapanPajak::factory(100)->create();
+
 
         // Checkbox
         ProgressPemeriksaan::create([
