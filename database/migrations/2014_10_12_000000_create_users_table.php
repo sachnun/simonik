@@ -13,10 +13,11 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        // buat tabel user dengan kolom nama, nip_sikka integer dan uniq, role set('user','admin'), password
+        // buat tabel user dengan kolom nama_depan, nama_belakang, nip_sikka integer dan uniq, role set('user','admin'), password
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama_depan');
+            $table->string('nama_belakang');
             $table->string('nip_sikka')->unique();
             $table->set('role', ['user', 'admin'])->default('user');
             $table->string('password');
